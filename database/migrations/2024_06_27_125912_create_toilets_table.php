@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('address');
             $table->string('title');
-            $table->string('photo_url');
+            $table->string('photo_url')->nullable();
             $table->foreignID('function_id')->constrained()->cascadeOnDelete();
-            $table->string('opening_hours');
+            $table->string('opening_hours')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreignID('user_id')->constrained()->cascadeOnDelete();
