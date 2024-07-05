@@ -24,6 +24,8 @@ Route::get('/dashboard', function () {
 
 Route::controller(ReviewController::class)->middleware(['auth'])->group(function(){
     Route::get('/reviews', 'index');
+    Route::get('/reviews/create', [ReviewController::class, 'create']);
+    Route::post('/reviews', [ReviewController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function () {
