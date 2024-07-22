@@ -9,7 +9,22 @@ class Toilet extends Model
 {
     use HasFactory;
     
-    public function reviews(){
+    protected $fillable = [
+        'address',
+        'title',
+        'photo_url',
+        'function_id',
+        'opening_hours',
+        'user_id'
+        ];
+    
+    public function reviews()
+    {
         return $this->hasMany(\App\Models\Review::class);
+    }
+    
+    public function averageRating()
+    {
+        return $this->reviews()->avg('rating');
     }
 }
