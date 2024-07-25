@@ -28,6 +28,7 @@ class ToiletController extends Controller
             'averageRating' => $averageRating
         ]);
         
-        
+    
     }
+    
 }

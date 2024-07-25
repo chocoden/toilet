@@ -26,7 +26,7 @@
         
        
         <div class='footer'>
-        　<a href="/toilets">トイレ一覧に戻る</a>
+        　<a href="/map">マップに戻る</a>
     　　</div>
     </body>
 </html>
