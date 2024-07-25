@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ToiletController;
+use App\Http\Controllers\MapController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +24,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/map', [MapController::class, 'index'])->name('map.index');
+
+
 Route::controller(ToiletController::class)->middleware(['auth'])->group(function(){
     Route::get('/toilets', 'index');
     Route::get('/toilets/{toilet}', 'show');
+   
 });
 
 Route::controller(ReviewController::class)->middleware(['auth'])->group(function(){
