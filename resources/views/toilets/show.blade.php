@@ -8,6 +8,10 @@
     </head>
     <body>
         <h1>{{ $toilet->title }}</h1>
+        <!-- 道案内ボタン -->
+        <a href="https://www.google.com/maps/dir/?api=1&destination={{ $toilet->latitude }},{{ $toilet->longitude }}" target="_blank">
+            <button>道案内</button>
+        </a>
         @if($averageRating !== null)
             <h2>平均評価: {{ number_format($averageRating, 1) }}★</h2>
          @else
