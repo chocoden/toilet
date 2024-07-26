@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ToiletController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\PublicToiletController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +26,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/map', [MapController::class, 'index'])->name('map.index');
+
+Route::get('/fetch-public-toilets', [PublicToiletController::class, 'fetchAndStorePublicToilets']);
+Route::get('/public-toilets/{place_id}', [PublicToiletController::class, 'show']);
 
 
 Route::controller(ToiletController::class)->middleware(['auth'])->group(function(){
