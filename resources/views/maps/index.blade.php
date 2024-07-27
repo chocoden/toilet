@@ -19,7 +19,7 @@
         <h1>トイレのマップ</h1>
         <div id="map"></div>
         <button id="cancelDirections">道案内を取り消す</button>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDG3veKcXc5Tty1S-lL1L4i7KCZspaTRNE&libraries=places&callback=initMap" async defer></script>
+        <script src="{{ config('services.google-map.apikey') }}" async defer></script>
         <script>
             let map;
             let directionsService;
