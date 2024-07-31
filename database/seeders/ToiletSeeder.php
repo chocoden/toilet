@@ -17,7 +17,7 @@ class ToiletSeeder extends Seeder
         DB::table('toilets')->insert([
             'address' => '新宿区中落合',
             'title' => '公園のトイレ',
-            'function_id' => '1',
+           
             'opening_hours' => '２４時間',
             'created_at' => new DateTime,
             'updated_at' => new DateTime,

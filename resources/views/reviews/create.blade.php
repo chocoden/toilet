@@ -28,7 +28,7 @@
             <input type="submit" value="投稿する"/>
         </form>
         <div class="footer">
-            <a href="/">戻る</a>
+            <a href="/toilets/{{ $toilet->id }}/reviews">戻る</a>
         </div>
         <script>
              document.addEventListener('DOMContentLoaded', (event) => {
