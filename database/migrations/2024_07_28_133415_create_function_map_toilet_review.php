@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('temporary_toilets', function (Blueprint $table) {
+        Schema::create('function_map_toilet_review', function (Blueprint $table) {
             $table->id();
-            $table->string('place_id')->unique();
-            $table->string('name');
-            $table->text('address');
-            $table->string('photo_url')->nullable();
+            $table->foreignId('function_id')->constrained()->onDelete('cascade');
+            $table->foreignId('map_toilet_review_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('temporary_toilets');
+        Schema::dropIfExists('function_map_toilet_review');
     }
 };

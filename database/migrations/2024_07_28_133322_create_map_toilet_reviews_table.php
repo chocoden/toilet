@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('toilets', function (Blueprint $table) {
-            $table->id();
-            $table->string('address');
-            $table->string('title');
+        Schema::create('map_toilet_reviews', function (Blueprint $table) {
+           $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->decimal('latitude', 10, 7);
+            $table->decimal('longitude', 10, 7);
+            $table->integer('rating');
+            $table->text('comment')->nullable();
             $table->string('photo_url')->nullable();
-            $table->string('opening_hours')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignID('user_id')->constrained()->cascadeOnDelete();
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('toilets');
+        Schema::dropIfExists('map_toilet_reviews');
     }
 };

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ToiletController;
 use App\Http\Controllers\MapController;
-use App\Http\Controllers\PublicToiletController;
+use App\Http\Controllers\MapToiletReviewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,8 +27,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/map', [MapController::class, 'index'])->name('map.index');
 
-Route::get('/fetch-public-toilets', [PublicToiletController::class, 'fetchAndStorePublicToilets']);
-Route::get('/public-toilets/{place_id}', [PublicToiletController::class, 'show']);
+
 
 
 Route::controller(ToiletController::class)->middleware(['auth'])->group(function(){
@@ -41,6 +40,12 @@ Route::controller(ReviewController::class)->middleware(['auth'])->group(function
     Route::get('toilets/{toilet}/reviews', 'index');
     Route::get('toilets/{toilet}/reviews/create', [ReviewController::class, 'create']);
     Route::post('toilets/{toilet}/reviews', [ReviewController::class, 'store']);
+});
+
+Route::get('/map-toilets/show', [MapToiletReviewController::class, 'show'])->name('map-toilets.show');
+
+Route::controller(MapToiletReviewController::class)->middleware(['auth'])->group(function(){
+    Route::post('/map-toilets/reviews/store', 'storeReview')->name('map-toilets.reviews.store');
 });
 
 Route::middleware('auth')->group(function () {
