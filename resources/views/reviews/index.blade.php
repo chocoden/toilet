@@ -10,6 +10,7 @@
         <h1>{{ $toilet->title }}の口コミ一覧</h1>
         <a href="/toilets/{{ $toilet->id }}/reviews/create">口コミを投稿する</a>
         <div class='reviews'>
+       
           @foreach ($reviews as $review)
             <div class='review'>
                 <h2 class='rating'>★{{ $review->rating}}</h2>

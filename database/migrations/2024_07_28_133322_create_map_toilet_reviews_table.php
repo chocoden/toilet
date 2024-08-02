@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('rating');
             $table->text('comment')->nullable();
             $table->string('photo_url')->nullable();
+            $table->string('name'); 
+            $table->string('vicinity');
             $table->timestamps();
             $table->softDeletes();
         });

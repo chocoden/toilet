@@ -26,9 +26,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/map', [MapController::class, 'index'])->name('map.index');
-
-
-
+Route::get('/map-toilets/show', [MapController::class, 'show'])->name('map.show');
 
 Route::controller(ToiletController::class)->middleware(['auth'])->group(function(){
     Route::get('/toilets', 'index');
@@ -42,10 +40,12 @@ Route::controller(ReviewController::class)->middleware(['auth'])->group(function
     Route::post('toilets/{toilet}/reviews', [ReviewController::class, 'store']);
 });
 
-Route::get('/map-toilets/show', [MapToiletReviewController::class, 'show'])->name('map-toilets.show');
+
+Route::get('/map-toilets/{lat},{lng}/reviews', [MapToiletReviewController::class, 'index'])->name('map-toilets.reviews.index');
 
 Route::controller(MapToiletReviewController::class)->middleware(['auth'])->group(function(){
-    Route::post('/map-toilets/reviews/store', 'storeReview')->name('map-toilets.reviews.store');
+    Route::get('/map-toilets/reviews/create', 'create')->name('map-toilets.reviews.create');
+    Route::post('/map-toilets/reviews/store', 'store')->name('map-toilets.reviews.store');
 });
 
 Route::middleware('auth')->group(function () {
