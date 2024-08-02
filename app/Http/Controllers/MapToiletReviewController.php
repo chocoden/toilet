@@ -8,25 +8,34 @@ use App\Models\MapToiletReview;
 
 class MapToiletReviewController extends Controller
 {
-    public function show(Request $request)
-    {
-        $lat = $request->query('lat');
-        $lng = $request->query('lng');
-        $name = $request->query('name');
-        $vicinity = $request->query('vicinity');
+    
+    
+    public function index(Request $request)
+        {
+            $lat = $request->query('lat');
+            $lng = $request->query('lng');
+            $name = $request->query('name');
+            $vicinity = $request->query('vicinity');
+    
+            // 口コミ情報を取得
+            $reviews = MapToiletReview::where('latitude', $lat)
+                ->where('longitude', $lng)
+                ->paginate(10); // ページネーションのために適宜設定
+    
+            return view('map_toilet_reviews.index', compact('name', 'vicinity', 'lat', 'lng', 'reviews'));
+        }
+    
+    public function create(Request $request)
+        {
+            $lat = $request->query('lat');
+            $lng = $request->query('lng');
+            $name = $request->query('name');
+            $vicinity = $request->query('vicinity');
+        
+            return view('map_toilet_reviews.create', compact('lat', 'lng', 'name', 'vicinity'));
+        }
 
-        // 口コミ情報を取得
-        $reviews = \App\Models\MapToiletReview::where('latitude', $lat)
-            ->where('longitude', $lng)
-            ->get();
-
-        // 平均評価を計算
-        $averageRating = $reviews->avg('rating');
-
-        return view('map_toilet_reviews.show', compact('name', 'vicinity', 'lat', 'lng', 'reviews', 'averageRating'));
-    }
-
-    public function storeReview(Request $request)
+    public function store(Request $request)
         {
             $request->validate([
                 'rating' => 'required|integer|between:1,5',
@@ -47,7 +56,7 @@ class MapToiletReviewController extends Controller
                 'comment' => $request->comment,
             ]);
         
-            return redirect()->route('map-toilets.show', [
+            return redirect()->route('map-toilets.reviews.index', [
                 'lat' => $request->lat,
                 'lng' => $request->lng,
                 'name' => $request->name,
