@@ -14,7 +14,7 @@ class Review extends Model
         'user_id',
         'rating',
         'comment',
-        ];
+    ];
     
       
       public function getPaginateByLimit(int $limit_count = 5)
@@ -22,12 +22,18 @@ class Review extends Model
           return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
       }
       
-      public function toilet(){
+      public function toilet()
+      {
           return $this->belongsTo(Toilet::class);
       } 
-   
-      public function user() { 
-
-        return $this->belongsTo(User::class);
+    
+      public function user()
+      { 
+          return $this->belongsTo(User::class);
+      }
+      
+      public function likes()
+      {
+          return $this->hasMany(Like::class);
       }
 }

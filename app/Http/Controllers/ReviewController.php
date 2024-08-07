@@ -11,7 +11,10 @@ class ReviewController extends Controller
 {
     public function index(Toilet $toilet)
     {
-        $reviews = $toilet->reviews()->paginate(10);
+        $reviews = $toilet->reviews()
+                          ->withCount('likes')
+                          ->paginate(10);
+                          
         return view('reviews.index')->with(['toilet' => $toilet, 'reviews' => $reviews]);
     }
     

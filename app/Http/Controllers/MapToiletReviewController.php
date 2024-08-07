@@ -17,9 +17,10 @@ class MapToiletReviewController extends Controller
             $name = $request->query('name');
             $vicinity = $request->query('vicinity');
     
-            // 口コミ情報を取得
+            // 口コミ情報を取得し、いいね数も取得
             $reviews = MapToiletReview::where('latitude', $lat)
                 ->where('longitude', $lng)
+                ->withCount('likes')
                 ->paginate(10); // ページネーションのために適宜設定
     
             return view('map_toilet_reviews.index', compact('name', 'vicinity', 'lat', 'lng', 'reviews'));

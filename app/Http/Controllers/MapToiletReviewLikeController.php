@@ -24,7 +24,7 @@ class MapToiletReviewLikeController extends Controller
                                            ->first();
 
         if ($existingLike) {
-            return response()->json(['message' => 'Already liked'], 400);
+            return response()->json(['message' => 'すでにいいねしています！'], 400);
         }
 
         // 新しい「いいね」を作成
@@ -37,7 +37,7 @@ class MapToiletReviewLikeController extends Controller
         $likeCount = MapToiletReviewLike::where('map_toilet_review_id', $reviewId)->count();
 
         return response()->json([
-            'message' => 'Liked successfully',
+            'message' => 'いいねしました！',
             'likes_count' => $likeCount
         ]);
     }

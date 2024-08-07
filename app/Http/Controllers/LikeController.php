@@ -23,7 +23,7 @@ class LikeController extends Controller
                             ->first();
 
         if ($existingLike) {
-            return response()->json(['message' => 'You have already liked this review.'], 400);
+            return response()->json(['message' => 'すでにいいねしています！.'], 400);
         }
 
         // いいねを作成
@@ -36,7 +36,7 @@ class LikeController extends Controller
         $likesCount = Like::where('review_id', $reviewId)->count();
 
         return response()->json([
-            'message' => 'Liked successfully',
+            'message' => 'いいねしました！',
             'likes_count' => $likesCount,
         ]);
     }
@@ -52,11 +52,11 @@ class LikeController extends Controller
         ->first();
         
         if(!like){
-            return response()->json(['message' => 'まだいいねしていません'],400);
+            return response()->json(['message' => 'まだいいねしていません！'],400);
         }
         
         $like->delete();
         
-        return response()->json(['message' => 'いいねが取り消されました']);
+        return response()->json(['message' => 'いいねが取り消されました！']);
     }
 }
