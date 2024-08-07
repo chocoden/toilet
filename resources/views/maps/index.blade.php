@@ -17,6 +17,7 @@
     </head>
     <body>
         <h1>トイレのマップ</h1>
+        <button id="postToiletButton">トイレを投稿する</button>
         <div id="map"></div>
         <button id="cancelDirections">道案内を取り消す</button>
         <script>
@@ -80,6 +81,10 @@
                 document.getElementById('cancelDirections').addEventListener('click', function() {
                     directionsRenderer.set('directions', null);
                 });
+                
+                document.getElementById('postToiletButton').addEventListener('click', function() {
+                window.location.href = "{{ route('toilets.create') }}";
+                });
             }
 
             function loadToilets(bounds) {
@@ -107,7 +112,7 @@
                                 const content = `
                                     <h3>${place.name}</h3>
                                     <p>${place.vicinity}</p>
-                                    <button onclick="navigateToForm(${place.geometry.location.lat()}, ${place.geometry.location.lng()})">詳細を見る</button>
+                                    <button onclick="navigateToForm(${place.geometry.location.lat()}, ${place.geometry.location.lng()}, '${place.name}', '${place.vicinity}')">詳細を見る</button>
                                     <button onclick="calculateAndDisplayRoute(${place.geometry.location.lat()}, ${place.geometry.location.lng()})">道案内</button>
                                 `;
                                 const infoWindow = new google.maps.InfoWindow({

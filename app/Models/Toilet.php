@@ -15,7 +15,9 @@ class Toilet extends Model
         'photo_url',
         'function_id',
         'opening_hours',
-        'user_id'
+        'user_id',
+        'latitude',
+        'longitude',
         ];
     
     public function reviews()

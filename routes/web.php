@@ -30,7 +30,9 @@ Route::get('/map-toilets/show', [MapController::class, 'show'])->name('map.show'
 
 Route::controller(ToiletController::class)->middleware(['auth'])->group(function(){
     Route::get('/toilets', 'index');
+    Route::get('/toilets/create', 'create')->name('toilets.create');
     Route::get('/toilets/{toilet}', 'show');
+    Route::post('/toilets', 'store')->name('toilets.store');
    
 });
 
@@ -41,12 +43,13 @@ Route::controller(ReviewController::class)->middleware(['auth'])->group(function
 });
 
 
-Route::get('/map-toilets/{lat},{lng}/reviews', [MapToiletReviewController::class, 'index'])->name('map-toilets.reviews.index');
+Route::get('/map-toilets/reviews', [MapToiletReviewController::class, 'index'])->name('map-toilets.reviews.index');
 
 Route::controller(MapToiletReviewController::class)->middleware(['auth'])->group(function(){
     Route::get('/map-toilets/reviews/create', 'create')->name('map-toilets.reviews.create');
     Route::post('/map-toilets/reviews/store', 'store')->name('map-toilets.reviews.store');
 });
+
 
 Route::middleware('auth')->group(function () {
     

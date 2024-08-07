@@ -19,7 +19,7 @@
     @endif
     <p>住所: {{ $vicinity }}</p>
 
-    <a href="/map-toilets/{{ $lat }},{{ $lng }}/reviews">このトイレの口コミ一覧を見る</a>
+    <a href="{{ route('map-toilets.reviews.index', ['lat' => $lat, 'lng' => $lng, 'name' => $name, 'vicinity' => $vicinity]) }}">このトイレの口コミ一覧を見る</a>
 
     <div class='footer'>
         <a href="/map">マップに戻る</a>
