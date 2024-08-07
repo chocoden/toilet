@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('toilets', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('title');
             $table->string('photo_url')->nullable();
             $table->string('opening_hours')->nullable();

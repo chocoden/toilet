@@ -16,11 +16,13 @@ class MapToiletReview extends Model
         'longitude',
         'rating',
         'comment',
+        'name',
+        'vicinity',
         'photo_url'
         ];
         
     public function user()
     {
-        return $this->belongsTO(User::class);
+        return $this->belongsTo(User::class);
     }
 }
