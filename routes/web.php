@@ -6,6 +6,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ToiletController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\MapToiletReviewController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MapToiletReviewLikeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +51,11 @@ Route::controller(MapToiletReviewController::class)->middleware(['auth'])->group
     Route::get('/map-toilets/reviews/create', 'create')->name('map-toilets.reviews.create');
     Route::post('/map-toilets/reviews/store', 'store')->name('map-toilets.reviews.store');
 });
+
+Route::post('/likes', [LikeController::class, 'store'])->name('likes.store');
+Route::delete('/likes', [LikeController::class, 'destroy'])->name('likes.destroy');
+
+Route::post('/map-toilets/reviews/like', [MapToiletReviewLikeController::class, 'store'])->name('map-likes.store');
 
 
 Route::middleware('auth')->group(function () {
