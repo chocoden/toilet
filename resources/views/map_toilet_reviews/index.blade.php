@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <title>Review</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-</head>
+<x-app-layout>
 <body>
     <h1>{{ $name }}の口コミ一覧</h1>
     <a href="/map-toilets/reviews/create?lat={{ $lat }}&lng={{ $lng }}&name={{ $name }}&vicinity={{ $vicinity }}">口コミを投稿する</a>
@@ -55,5 +48,4 @@
             });
         });
     </script>
-</body>
-</html>
+</x-app-layout>
