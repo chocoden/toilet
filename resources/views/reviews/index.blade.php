@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <title>Review</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-</head>
-<body>
+<x-app-layout>
     <h1>{{ $toilet->title }}の口コミ一覧</h1>
     <a href="/toilets/{{ $toilet->id }}/reviews/create">口コミを投稿する</a>
     <div class='reviews'>
@@ -52,5 +44,4 @@
             });
         });
     </script>
-</body>
-</html>
+</x-app-layout>

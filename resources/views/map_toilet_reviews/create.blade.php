@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <title>{{ $name }}の口コミ投稿</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-</head>
-<body>
+<x-app-layout>
     <h1>{{ $name }}の口コミ投稿</h1>
     <form action="{{ route('map-toilets.reviews.store') }}" method="POST">
         @csrf
@@ -72,5 +64,4 @@
             
         });
     </script>
-</body>
-</html>
+</x-app-layout>

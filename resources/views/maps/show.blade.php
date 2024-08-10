@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <title>{{ $name }}</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-</head>
-<body>
+<x-app-layout>
     <h1>{{ $name }}</h1>
     <!-- 道案内ボタン -->
     <a href="https://www.google.com/maps/dir/?api=1&destination={{ $lat }},{{ $lng }}" target="_blank">
@@ -24,5 +16,4 @@
     <div class='footer'>
         <a href="/map">マップに戻る</a>
     </div>
-</body>
-</html>
+</x-app-layout>

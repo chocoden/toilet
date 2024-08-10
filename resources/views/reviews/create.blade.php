@@ -1,11 +1,4 @@
-<!DOCTYPE HTML>
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <title>Review</title>
-        
-    </head>
-    <body>
+<x-app-layout>
         <h1>{{ $toilet->title }}の口コミ投稿</h1>
         <form action="/toilets/{{ $toilet->id }}/reviews" method="POST">
             @csrf
@@ -65,9 +58,6 @@
                     }, false);
                 });
             });
-            
-            
-
         </script>
-    </body>
-</html>
+</x-app-layout>
+  
