@@ -1,29 +1,36 @@
 <x-app-layout>
-        <h1>{{ $toilet->title }}の口コミ投稿</h1>
+    <div class="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">{{ $toilet->title }}の口コミ投稿</h1>
+        
         <form action="/toilets/{{ $toilet->id }}/reviews" method="POST">
             @csrf
             
-            <div>
-                <span class="star" id="1">★</span>
-                <span class="star" id="2">★</span>
-                <span class="star" id="3">★</span>
-                <span class="star" id="4">★</span>
-                <span class="star" id="5">★</span>
-                <input type="hidden" name="review[rating]" id="rating" value="">
-    　　　　</div>
-            
+            <div class="mb-6">
+                <div class="flex items-center space-x-2">
+                    <span class="star text-3xl cursor-pointer" id="1">★</span>
+                    <span class="star text-3xl cursor-pointer" id="2">★</span>
+                    <span class="star text-3xl cursor-pointer" id="3">★</span>
+                    <span class="star text-3xl cursor-pointer" id="4">★</span>
+                    <span class="star text-3xl cursor-pointer" id="5">★</span>
+                    <input type="hidden" name="review[rating]" id="rating" value="">
+    　　　　        </div>
+            </div>
     
-            <div class="comment">
-                <h2>コメント</h2>
-                <textarea name="review[comment]" placeholder="感想"></textarea>
+            <div class="comment mb-6">
+                <h2 class="text-xl font-semibold text-gray-700 mb-2">コメント</h2>
+                <textarea name="review[comment]" placeholder="感想" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
             </div>
             
-            <input type="submit" value="投稿する"/>
+            <div class="text-right">
+                <input type="submit" value="投稿する" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"/>
         </form>
-        <div class="footer">
-            <a href="/toilets/{{ $toilet->id }}/reviews">戻る</a>
+        
+        <div class="footer mt-6">
+            <a href="/toilets/{{ $toilet->id }}/reviews" class="text-gray-500 hover:text-gray-700 transition-colors">戻る</a>
         </div>
-        <script>
+    </div>
+    
+    <script>
              document.addEventListener('DOMContentLoaded', (event) => {
                 const stars = document.querySelectorAll('.star');
                 let clicked = false;
@@ -58,6 +65,6 @@
                     }, false);
                 });
             });
-        </script>
+    </script>
 </x-app-layout>
   
