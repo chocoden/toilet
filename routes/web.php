@@ -27,8 +27,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/map', [MapController::class, 'index'])->name('map.index');
-Route::get('/map-toilets/show', [MapController::class, 'show'])->name('map.show');
+Route::controller(MapController::class)->middleware(['auth'])->group(function(){
+    Route::get('/map', 'index')->name('map.index');
+    Route::get('/map-toilets/show','show')->name('map.show');
+});
 
 Route::controller(ToiletController::class)->middleware(['auth'])->group(function(){
     Route::get('/toilets', 'index');
