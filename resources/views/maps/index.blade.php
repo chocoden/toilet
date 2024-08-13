@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <title>Google Maps with Toilets</title>
-        <style>
-            #map {
-                height: 100%;
-                width: 100%;
-            }
-            html, body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>トイレのマップ</h1>
+<x-app-layout>
+    @push('styles')
+        <link href="{{ asset('css/MapStyle.css') }}" rel="stylesheet">
+    @endpush
+    
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">トイレのマップ</h1>
         <button id="postToiletButton">トイレを投稿する</button>
         <div id="map"></div>
         <button id="cancelDirections">道案内を取り消す</button>
+    </div>
+    
         <script>
             /* global google */
             let map;
@@ -57,12 +47,17 @@
                             });
 
                             const infoWindow = new google.maps.InfoWindow({
-                                content: `<h3>${toilet.title}</h3><p>${toilet.address}</p><a href="/toilets/${toilet.id}">詳細を見る</a>`
+                                content: `
+                                        <h3 class="text-lg font-semibold text-gray-800 mb-2">${toilet.title}</h3>
+                                        <p class="text-sm text-gray-600 mb-2">${toilet.address}</p>
+                                        <button onclick="window.location.href='/toilets/${toilet.id}'" class="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-800 text-sm">
+                                            詳細を見る
+                                        </button>
+                                        `
                             });
 
                             marker.addListener('click', function() {
                                 infoWindow.open(map, marker);
-                                showDetails(toilet);
                             });
 
                             console.log(marker); // コンソールにマーカーの情報を表示
@@ -166,12 +161,8 @@
                 }
             }
             
-            
-
-           
             document.addEventListener("DOMContentLoaded", initMap);
         </script>
       
         <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-map.apikey') }}&libraries=places&callback=initMap" async defer></script>
-    </body>
-</html>
+ </x-app-layout>
