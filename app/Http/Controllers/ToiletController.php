@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Toilet;
+use Cloudinary;
 
 class ToiletController extends Controller
 {
@@ -43,11 +44,13 @@ class ToiletController extends Controller
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
         ]);
+        
+        $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
 
         Toilet::create([
             'user_id' => auth()->id(),
             'title' => $request->title,
-            'photo_url' => $request->photo_url,
+            'photo_url' => $image_url,
             'opening_hours' => $request->opening_hours,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
