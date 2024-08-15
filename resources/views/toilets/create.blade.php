@@ -1,6 +1,6 @@
 <x-app-layout>
     <h1 class="text-3xl font-semibold text-center mb-8">新しいトイレの投稿</h1>
-    <form action="{{ route('toilets.store') }}" method="POST" class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <form action="{{ route('toilets.store') }}" method="POST" enctype="multipart/form-data" class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
         @csrf
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
             <div>
@@ -9,8 +9,8 @@
             </div>
             
             <div>
-                <label for="photo_url" class="block text-sm font-medium text-gray-700">写真のURL:</label>
-                <input type="text" id="photo_url" name="photo_url" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <label for="photo_url" class="block text-sm font-medium text-gray-700">写真:</label>
+                <input type="file" id="photo_url" name="image" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
             </div>
             
             <div>

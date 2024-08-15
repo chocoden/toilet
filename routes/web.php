@@ -19,9 +19,7 @@ use App\Http\Controllers\MapToiletReviewLikeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,6 +27,7 @@ Route::get('/dashboard', function () {
 
 Route::controller(MapController::class)->middleware(['auth'])->group(function(){
     Route::get('/map', 'index')->name('map.index');
+    Route::get('/', 'index')->name('map.index');
     Route::get('/map-toilets/show','show')->name('map.show');
 });
 

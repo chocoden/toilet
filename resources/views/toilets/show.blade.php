@@ -21,7 +21,7 @@
         <p class="text-gray-600 mb-6">住所:{{ $toilet->address }}</p>
         <p class="text-gray-600 mb-6">営業時間:{{ $toilet->opening_hours }}</p>
         
-        @if($toilet->photo_url)
+        @if($toilet->photo_url !== null)
             <p><img src="{{ $toilet->photo_url }}" alt="{{ $toilet->title }}"></p>
         @endif
         
